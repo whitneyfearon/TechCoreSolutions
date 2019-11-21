@@ -1,0 +1,131 @@
+﻿@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+html {
+    position: relative;
+    min-height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;    
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+
+}
+.carousel-item {
+    height: 100vh;
+    min-height: 350px;
+    background: none repeat scroll;
+    /*-moz-background-size: cover;
+    -o-background-size: cover;*/
+    background-size: cover;
+}
+.m{
+    width: 300px;
+    height: 300px;
+}
+nav a, nav:active a {
+    /*display: inline*/
+    z-index: 1000;
+    /*position: relative;*/
+    background: black;
+    /*right: 20px;
+    top: 60px;
+    border: 1px solid #FFF;
+    border-radius: 2px 0 2px 2px;*/
+  
+}
+
+/*#cphBody_imgEcho, #cphBody_imgMacbookPro, #cphBody_imgAirpods, #cphBody_imgIphoneX, #cphBody_imgApple, #cphBody_imgSamsung, #cphBody_imgDell, #cphBody_imgHp {
+    height: 100px;
+    width: 100px;
+}*/
+.navbar, .n{
+    background: black;
+    color: white;
+}
+
+/*.show-1, .show-2 {
+    opacity: 0;
+    transition: opacity 0.5s linear;
+}
+
+div:hover .show-1, div:hover .show-2 {
+    opacity: 1;
+}*/
+
+
+.card-hover .reveal {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.card-hover:hover .reveal {
+    visibility: visible;
+    opacity: 10;
+    transition: opacity 1s ease;
+}
+.navItem {
+    color: white !important;
+    text-decoration: none;
+}
+
+.num {
+    text-decoration: none;
+}
+
+.navItem:hover, .navItem:focus, .vv:hover {
+        color: #45a6ea !important;
+        text-decoration: none;
+}
+.card-btn{
+    width: 100%;
+}
+
+.vv {
+    background: none;
+    /*margin-right: 50px;*/
+    border: none;
+
+    margin-top: -7px;
+}
+
+.footer {
+    padding-top: 100px;
+}
+
+
+.nestedHeaderMaster {
+    height: 30vh;
+    background-image: linear-gradient( rgba(0,0,0,0.8), rgba(0,0,0,0.8) ), url('../images/cover.jpg');
+    background-size: cover;
+    background-position: top;
+    position: relative;
+}
+
+.page-heading {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #aaa;
+    white-space: nowrap;
+}
+
+.page-heading-primary {
+    display: block;
+    font-size: 3.125rem;
+    color: #3498db;
+}
+
+/*.page-heading-secondary {
+    display: block;
+
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4.5px;
+}*/

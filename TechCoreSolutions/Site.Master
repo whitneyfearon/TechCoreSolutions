@@ -1,0 +1,240 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="TechCoreSolutions.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <title><%: Page.Title %> - Tech Core Solutions</title>
+    <link rel="icon" href="site/images/img.gif" />
+    <link href="site/css/sites.css" rel="stylesheet" />
+    <link href="Content/font-awesome.css" rel="stylesheet" />
+    <link href="Content/fontawesome-all.css" rel="stylesheet" />
+    <link href="Content/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/jquery-3.4.1.slim.min.js"></script>
+    <script src="Scripts/jquery-3.4.1.js"></script>
+    <script src="Scripts/popper.min.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <nav class="n">
+            <div class="container-fluid">
+                <div class="d-flex justify-content-center">
+                    <div class="nav-item nav-link">
+                        <i class="fa fa-map-marker"></i>&nbsp; Address: 123 Harley Drive, Kingston 10
+                      
+                    </div>
+                    <div>
+                        <a class="nav-item nav-link">
+                            <i class="fa fa-phone"></i>&nbsp; Call : (876) 123-4567
+                        </a>
+                    </div>
+                    <div>
+                        <a class="nav-item nav-link navItem" href="mailto:info@example.com">
+                            <i class="fa fa-envelope-o"></i>&nbsp; techcoresolutions@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+        <div class="bg-light text-center">
+            <a class="navbar-brand pl-5" href="Default.aspx" style="color: black; font-weight: bold">
+                <asp:Image ID="Image1" CssClass="links" ImageUrl="~/site/images/img.gif" runat="server" Height="150px" Width="150px" />ECH CORE SOLUTIONS
+            </a>
+            <% if (Context.User.Identity.GetUserName() != "admin@gmail.com" && lblName.Text != "Guest")
+                { %>
+            <a class="navbar-brand vv" href="ShoppingCart.aspx" style="padding-left: 200px">
+                <i class="fa fa-cart-arrow-down fa-3x"></i><span class="badge badge-primary">
+                    <asp:Literal runat="server" ID="cartTotal"></asp:Literal></span>
+
+            </a>
+            <% } %>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <%--<a class="navbar" href="#">Tech Core Solutions</a>--%>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse n justify-content-center" id="navbarNavAltMarkup">
+                <div class="navbar-nav" style="font-size: larger">
+                    <a class="nav-item nav-link pr-5 navItem active" runat="server" href="~/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link pr-5 navItem" runat="server" href="About.aspx">About Us</a>
+                    <% if (Context.User.Identity.GetUserName() == "admin@gmail.com")
+                        { %>
+                        <a class="nav-item nav-link pr-5 navItem" runat="server" href="Products.aspx">Manage Products</a>
+                        <a class="nav-item nav-link pr-5 navItem" runat="server" href="~/">Manage Users</a>
+                    <% }
+                        else if (Context.User.Identity.GetUserName() != null && lblName.Text != "Guest")
+                        { %>
+
+                        <a class="nav-item nav-link pr-5 navItem" runat="server" href="Products.aspx">Products</a>
+                        <a class="nav-item nav-link pr-5 navItem" runat="server" href="~/">View Order History</a>
+                    <%  }
+                        else
+                        {%>
+                            <a class="nav-item nav-link pr-5 navItem" runat="server" href="Products.aspx">Products</a>
+                     <% }%>
+                    <a class="nav-item nav-link pr-5 navItem" runat="server" href="Contact.aspx">Contact Us</a>
+
+
+                    <span class="nav-link pr-5 text-white" runat="server">Hello,
+                        <asp:Label ID="lblName" Text="" runat="server"></asp:Label>
+                        !</span>
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a class="nav-item nav-link pr-5 navItem" runat="server" href="~/Account/Register">Register</a></li>
+                                <li><a class="nav-item nav-link pr-5 navItem" runat="server" href="~/Account/Login">Log in</a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <%--<li><span class="nav-link pr-5 text-white" runat="server">Hello, <%: Context.User.Identity.GetUserName()  %> !</span></li>--%>
+                                <%-- <li><span class="nav-link pr-5 text-white" runat="server">Hello, <asp:Label ID="lblName" Text="" runat="server"></asp:Label> !</span></li>--%>
+                                <li>
+                                    <asp:LoginStatus CssClass="nav-item nav-link pr-5 navItem" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                </li>
+                            </ul>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+            </div>
+        </nav>
+        <div>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <%--<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="show-cart table">
+                        </table>
+                        <div>Total price: $<span class="total-cart"></span></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <% if (Session["FirstName"] == null || Session["Logout"] == null)
+                        { %>
+                    <button type="button" id="btnCart" class="btn btn-primary" title="You Need To Login or Register To Order!" disabled>Order Now</button>
+                    <% }
+                        else 
+                        { %>
+                    <button type="button" class="clear-cart btn btn-primary" onClick="javascript:return confirm('Order Completed Successfully')">Order now</button>
+                    <%} %>                        
+                        <button class="clear-cart btn btn-danger">Clear Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>--%>
+        <div class="modal fade" id="successModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body alert-success alert-dismissible">
+                        <p><i class="fa fa-check"></i>&nbsp;Success: Item have been added to your shopping cart!</p>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div style="background-color: #45a6ea">
+                <div class="container-fluid p-3 pl-5">
+                    <table class="table table-borderless text-white">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <h5><i class="fa fa-paper-plane"></i>&nbsp; Subscribe to our Newsletter</h5>
+                                </td>
+                                <td>to get free coupons, information on the latest deals and more!
+                                </td>
+                                <td>
+                                    <p class="form-inline my-2 my-lg-0">
+                                        <input class="form-control mr-sm-2" type="search" placeholder="Enter your email address" aria-label="Search">
+                                        <button class="btn btn-dark my-2 my-sm-0" type="submit">Subscribe</button>
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="n" style="margin-top: -20px">
+                <div class="container-fluid p-5">
+                    <table class="table table-borderless text-white">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <h6><b class="text-primary" style="font-size: xx-large">T</b>ECH CORE SOLUTIONS</h6>
+                                    <br />
+                                    <p class="text-muted">
+                                        At Tech Core Solutions, we believe
+                                        <br />
+                                        that the power of Tech can change<br />
+                                        the world. 
+                                    </p>
+                                </td>
+                                <td>
+                                    <h6><b class="text-primary" style="font-size: xx-large">O</b>UR INFORMATION</h6>
+                                    <br />
+                                    <br />
+                                    <a class="text-muted navItem" href="Default.aspx">Home </a>
+                                    <br />
+                                    <a class="text-muted navItem" href="About.aspx">About Us </a>
+                                    <br />
+                                    <a class="text-muted navItem" href="Products.aspx">Products </a>
+                                    <br />
+                                    <a class="text-muted navItem" href="Contact.aspx">Contact Us </a>
+
+                                </td>
+                                <td>
+                                    <h6><b class="text-primary" style="font-size: xx-large">S</b>TORE INFORMATION</h6>
+                                    <br />
+                                    <br />
+                                    <p class="text-muted">
+                                        <i class="fa fa-map-marker"></i>&nbsp; Address
+                                        <br />
+                                        &nbsp; &nbsp;  123 Harley Drive, Kingston 10
+                                        <br />
+                                        <br />
+                                        <i class="fa fa-phone"></i>&nbsp; Phone Number
+                                        <br />
+                                        <a class="text-muted num">&nbsp; &nbsp; &nbsp; (876) 123-4567 </a>
+                                        <br />
+                                        <br />
+                                        <i class="fa fa-envelope-o"></i>&nbsp; Email
+                                        <a class="text-muted navItem" href="mailto:info@example.com">
+                                            <br />
+                                            &nbsp; &nbsp; &nbsp; techcoresolutions@gmail.com
+                                        </a>
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="n text-center text-muted pb-2">
+                &copy; <%: DateTime.Now.Year %> Tech Core Solutions. All rights reserved | <span class="text-primary">Design by Whitney Fearon</span>
+            </div>
+        </footer>
+        <script src="Scripts/bootstrap.min.js"></script>
+        <script src="Scripts/bootstrap.js"></script>
+        <script src="site/js/script.js"></script>
+    </form>
+</body>
+</html>
